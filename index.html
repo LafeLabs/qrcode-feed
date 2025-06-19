@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREBERAREREBEQEAEBEREQARAQAQEREAAAEBERAREQAAAAAAABERAAABERERERERABEREREREREBEREREREREREREREREREREREAAAAREQAAAAEREBERAREQAQAQEREBABABABAREQEAEAEREBERAREQAAAAEREAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon">
+   <title>QRCODE!</title>    
+   <!--
+   QR CODE GENERATOR 
+   -->
+   <script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>    
+
+<h1>
+    <a id = "url">QRCODE</a>
+</h1>
+
+    <div id = "qrcode"></div>   
+    <input id = "urlinput">
+    <textarea id = "note"></textarea>
+    <div id = "feed"></div>
+    <div id = "links">
+        <a href = "edit-index.html">edit-index.html</a>
+        <a href = "readme.html">readme.html</a>
+    </div>
+<style>
+h1{
+    font-family:Comic Sans MS;
+    font-size:2em;
+    text-align:center;
+}
+#links a{
+    border:solid;
+    border-radius:0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    text-align:center;
+    width:80%;
+    margin:auto;
+}
+#note{
+    width:90%;
+    height:5em;
+    font-family:Comic Sans MS;
+    font-size:2em;
+    width:90%;   
+    margin-left:4%;
+}
+a{
+    color:#300030;
+    display:block;
+    font-family:Comic Sans MS;
+    
+}
+input{
+    font-size:2em;
+    width:90%;   
+    margin-left:4%;
+    margin-top:1.5em;
+
+}
+#qrcode img{
+    margin:auto;
+}
+</style>
+<script>
+
+basefeed = [];
+baselink = {
+    "url":"https://github.com/lafelabs/qrcode-feed",
+    "note":"THE ORIGIN OF THE CODE"
+}
+
+basefeed.push(baselink);
+
+feed = basefeed;
+
+if(innerWidth > innerHeight){
+    codesquaresize = innerHeight - 200;
+}
+else{
+    codesquaresize = innerWidth - 200;
+}
+url = window.location.href;
+document.getElementById("url").innerHTML = url;    
+document.getElementById("url").href = url;    
+qrcode = new QRCode(document.getElementById("qrcode"), {
+	text: url,
+	width: codesquaresize,
+	height: codesquaresize,
+	colorDark : "#000000",
+	colorLight : "#ffffff",
+	correctLevel : QRCode.CorrectLevel.H
+});
+
+document.getElementById("urlinput").value = "";
+document.getElementById("urlinput").select();
+document.getElementById("urlinput").onchange = function(){
+    url = this.value;
+    this.value = "";
+    qrcode.makeCode(url);
+    document.getElementById("url").innerHTML = url;    
+    document.getElementById("url").href = url;    
+    
+}
+
+note = "";
+currentfile = "note.txt";
+var httpc = new XMLHttpRequest();
+httpc.open("GET", "load-file.php?filename=" + currentfile, true);
+httpc.send();
+httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        note = this.responseText;
+        document.getElementById("note").value = note;  
+    }
+};
+
+document.getElementById("note").onkeyup = function() {
+    note = this.value;
+    var httpc = new XMLHttpRequest();
+    var url = "save-file.php";        
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+    httpc.send("data=" + note + "&filename=" + currentfile);//send text to filesaver.php
+}
+
+function loadfeed(){
+    document.getElementById("feed").innerHTML = "";
+    for(var index = 0;index < feed.length;index++){
+        var newdiv = document.createElement("DIV");
+        newdiv.innerHTML = feed.url;
+        newdiv.onclick = function(){
+            
+        }
+    }
+}
+</script>
+</body>
+</html>
+
+
+    
+    
