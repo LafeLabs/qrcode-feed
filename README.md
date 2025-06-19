@@ -10,7 +10,7 @@ A feed of qr codes based on the [qrcode.js](https://davidshimjs.github.io/qrcode
  - [edit-php.html](edit-php.html)
  - [raw trash magic replicator link](https://raw.githubusercontent.com/LafeLabs/qrcode-feed/refs/heads/main/php/replicator.txt)
  - [http://localhost/qrcode-feed/](http:/localhost/qrcode-feed/)
- - [https://www.apachefriends.org/](https://www.apachefriends.org/)
+ - [install XAMPP here](https://www.apachefriends.org/)
  - [feed.json](feed.json)
 
 
