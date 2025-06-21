@@ -1,9 +1,12 @@
 {
     "html": [
         "README.md",
+        "branch.html",
+        "dna.txt",
         "edit-html.html",
         "edit-index.html",
         "edit-php.html",
+        "feed.json",
         "index.html",
         "note.txt",
         "readme.html"
