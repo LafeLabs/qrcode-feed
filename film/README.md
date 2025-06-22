@@ -4,8 +4,6 @@ A feed of qr codes based on the [qrcode.js](https://davidshimjs.github.io/qrcode
 
 ![](qrcode.png)
 
-## [LIVE INSTANCE QR CODE FEED AT TRASH ROBOT DOT NET](https://trashrobot.net/qrcode-feed/)
-
 # Meta
 
  - [qrcode-feed Github repository](https://github.com/lafelabs/qrcode-feed)
