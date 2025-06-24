@@ -6,9 +6,7 @@
         "edit-html.html",
         "edit-index.html",
         "edit-php.html",
-        "feed.html",
         "feed.json",
-        "index-static.html",
         "index.html",
         "note.txt",
         "readme.html"
